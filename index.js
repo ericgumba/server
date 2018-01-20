@@ -5,7 +5,7 @@ const app = express();
 
 app.get('/', (req, res) => {
     res.send({
-        wow: 2 + 2,
+        wow: 2 + 2 + "?",
     })
 });
 
