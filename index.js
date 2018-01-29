@@ -26,6 +26,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.get('/', (req, res) => {
+    res.send('<p> You\'re slowly getting to your goal! =) </p>')
+})
 
 require('./routes/authRoutes')(app);
 
