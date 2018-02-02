@@ -9,7 +9,7 @@ require('./services/passport')
 
 let days = amountOfDays => amountOfDays * 24 * 60 * 60 * 1000;
 
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 const app = express();
