@@ -1,11 +1,9 @@
-const passport = require('passport')
+const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose = require('mongoose')
-const keys = require('../config/keys')
-const User = mongoose.model('users')
+const mongoose = require('mongoose');
+const keys = require('../config/keys');
 
-// basically seralizeUser creates a cookie out of user id. 
-// User is user model instance, which gets converted into id.
+const User = mongoose.model('users');
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -25,13 +23,14 @@ passport.use(
             proxy: true
         },
         async(accessToken, refreshToken, profile, done) => {
-            const existingUser = await User.findOne({ googleID: profile.id })
+            const existingUser = await User.findOne({ googleId: profile.id });
 
             if (existingUser) {
                 return done(null, existingUser);
             }
-            const user = await new User({ googleID: profile.id }).save()
+
+            const user = await new User({ googleId: profile.id }).save();
             done(null, user);
-
-
-        }));
+        }
+    )
+);
